@@ -1,0 +1,102 @@
+:root {
+  --base-color: #099497;
+}
+
+.btn.btn-category {
+  --bs-btn-font-weight: 400;
+  --bs-btn-color: #404040;
+  --bs-btn-bg: var(--base-white);
+  --bs-btn-border-color: #C2C2C2;
+  --bs-btn-border-radius: 0.5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--base-color);
+  --bs-btn-hover-border-color: var(--base-color);
+  --bs-btn-focus-shadow-rgb: var(--base-color);
+  --bs-btn-active-color: var(--bs-white);
+  --bs-btn-active-bg: var(--base-color);
+  --bs-btn-active-border-color: var(--base-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-teal {
+  background-color: #099497;
+  color: white;
+}
+.btn-teal:hover {
+  border-color: #099497;
+  color: #099497;
+}
+
+.btn-outline-teal {
+  border-color: #099497;
+  color: #099497;
+}
+.btn-outline-teal:hover {
+  background-color: #099497;
+  color: white;
+}
+
+.bg-teal {
+  background-color: #099497;
+}
+
+.bg-light-teal {
+  background-color: #eafeff;
+}
+
+.btn-light-secondary {
+  background-color: rgb(241, 241, 241);
+  color: black;
+}
+.btn-light-secondary:hover {
+  border-color: lightgray;
+  color: black;
+}
+
+.bg-img {
+  background: white url("../assets/images/bg-main.jpg") no-repeat center;
+  background-size: cover;
+}
+
+.vh-80 {
+  height: 80vh !important;
+}
+
+.text-teal {
+  color: #099497;
+}
+
+.footer-link li {
+  margin-bottom: 10px;
+}
+
+.footer-link li a:hover {
+  text-decoration: underline !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.margin-li li {
+  margin-right: 20px;
+}
+
+.w-40 {
+  max-width: 40% !important;
+}
+
+@media screen and (max-width: 1024px) {
+  .h-md-50 {
+      max-height: 50% !important;
+  }
+  .w-md-50 {
+      max-width: 50% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .h-md-50 {
+      max-height: 50% !important;
+  }
+}
