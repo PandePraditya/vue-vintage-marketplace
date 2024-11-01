@@ -36,6 +36,7 @@ export default {
         async getRegisterData({ commit, dispatch }, payload) {
             const APIkey = "AIzaSyBsSG8282AbQ8_5z_IUASVIlp-7oU7zqbk";
             const authUrl = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
+            console.log(payload);
             try {
                 const { data } = await axios.post(authUrl + APIkey, {
                     email: payload.email,
@@ -93,6 +94,16 @@ export default {
                         commit("setUserLogin", {userData: data[key], loginStatus: true });
                     }
                 }
+            } catch(err) {
+                console.log(err);
+            }
+        },
+        async updateUser({ commit, state }, payload) {
+            try {
+                await axios.put(
+                    `https://market-place-vintage-default-rtdb.firebaseio.com/user/${state.userLogin.userId}.json?auth=${state.token}`, payload
+                );
+                commit("setUserLogin", {userData: payload, loginStatus: true });
             } catch(err) {
                 console.log(err);
             }

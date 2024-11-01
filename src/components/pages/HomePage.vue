@@ -1,8 +1,27 @@
 <script setup>
-    import ProductList from '../products/ProductList.vue'; // jangan dihapus
-    import PRODUCT_DATA from "../../product.js";
+    // import ProductList from '../products/ProductList.vue'; // jangan dihapus
+    // import PRODUCT_DATA from "../../product.js";
 
-    const productList = PRODUCT_DATA;
+    // const productList = PRODUCT_DATA;
+
+    // eslint-disable-next-line no-unused-vars
+    import ProductList from '../products/ProductList.vue'; // jangan dihapus
+    import { onMounted, ref } from 'vue';
+    import { useStore } from 'vuex';
+
+    const store = useStore();
+    const productListStatus = ref(false);
+    const productList = ref();
+
+    onMounted( async () => {
+        try {
+            await store.dispatch("product/getProductData");
+            productListStatus.value = true;
+            productList.value = store.state.product.products;
+        } catch (err) {
+            console.log(err);
+        }
+    });
 </script>
 
 <template>
@@ -14,7 +33,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title mb-4">Ready to declutter your closet?</h4>
-                            <a href="products.html" class="btn btn-teal w-100">Shop Now</a>
+                            <router-link to="/products"  class="btn btn-teal w-100">Shop Now</router-link>
                         </div>
                     </div>
                 </div>
@@ -24,10 +43,10 @@
         <div class="row p-5">
             <div class="d-flex justify-content-between align-items-center">
                 <h3 class="py-3" style="margin-left: 50px;">Popular Item</h3>
-                <a href="products.html" class="text-teal text-decoration-none" style="margin-right: 60px;">See All</a>
+                <router-link to="/products" class="text-teal text-decoration-none" style="margin-right: 60px;">See All</router-link>
             </div>
             <!-- Popular Item -->
-            <product-list :products="productList"></product-list>
+            <product-list :products="productList" v-if="productListStatus"></product-list>
 
             <!-- Shop by Brand -->
             <div class="pt-5">

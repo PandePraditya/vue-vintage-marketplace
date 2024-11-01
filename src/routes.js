@@ -2,6 +2,8 @@ import HomePage from "./components/pages/HomePage.vue";
 import WebLogin from "./components/auth/WebLogin.vue";
 import WebSignup from "./components/auth/WebSignup.vue";
 import DetailPage from "./components/pages/DetailPage.vue";
+import ProductPage from "./components/pages/ProductPage.vue";
+import UserPage from "./components/pages/UserPage.vue";
 import { store } from "./store/index";
 import Cookies from "js-cookie";
 
@@ -47,8 +49,21 @@ export const routes = [
         component: WebSignup
     },
     {
-        path: "/product", // Kasi :id nanti
+        path: "/product/:id", // Kasi :id nanti
         name: "productDetail",
         component: DetailPage, 
+    },
+    {
+        path: "/products",
+        name: "productPage",
+        component: ProductPage, 
+    },
+    {
+        path: "/user/:component", // ingat diisi :component
+        name: "userPage",
+        component: UserPage, 
+        // beforeEnter: (to, from, next) => {
+        //     checkAuth() ? next() : next({ name: "login" });
+        // }
     },
 ]
