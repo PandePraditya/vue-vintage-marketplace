@@ -91,8 +91,12 @@ const goToHome = () => {
                             </div>
                             <!-- Password -->
                             <div class="mb-3">
-                                <base-input type="password" identity="password" label="Password"
-                                    placeholder="Enter your password" v-model="signupData.password"
+                                <base-input 
+                                    type="password" 
+                                    identity="password" 
+                                    label="Password"
+                                    placeholder="Enter your password" 
+                                    v-model="signupData.password"
                                     @keyInput="passwordCheck">
                                 </base-input>
                                 <p class="text-danger mt-1 fw-semibold" style="font-size: 11px;"
@@ -102,7 +106,10 @@ const goToHome = () => {
                             </div>
                             <!-- Confirmation Password -->
                             <div class="mb-3">
-                                <base-input type="password" identity="confirmpassword" label="Confirm Password"
+                                <base-input 
+                                    type="password" 
+                                    identity="confirmpassword" 
+                                    label="Confirm Password"
                                     placeholder="Confirm your password" v-model="signupData.confirmPassword"
                                     @keyInput="confirmPasswordCheck">
                                 </base-input>

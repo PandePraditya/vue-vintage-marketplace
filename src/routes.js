@@ -4,8 +4,11 @@ import WebSignup from "./components/auth/WebSignup.vue";
 import DetailPage from "./components/pages/DetailPage.vue";
 import ProductPage from "./components/pages/ProductPage.vue";
 import UserPage from "./components/pages/UserPage.vue";
-import { store } from "./store/index";
+import CartPage from "./components/pages/CartPage.vue";
+import CheckoutProduct from "./components/cart/CheckoutProduct.vue";
+import FavoriteItems from "./components/products/FavoriteItems.vue";
 import Cookies from "js-cookie";
+import { store } from "./store/index";
 
 const checkAuth = () => {
     const jwtCookie = Cookies.get("jwt");
@@ -65,5 +68,23 @@ export const routes = [
         // beforeEnter: (to, from, next) => {
         //     checkAuth() ? next() : next({ name: "login" });
         // }
+    },
+    {
+        path: "/product/cart",
+        name: "cartPage",
+        component: CartPage,
+        // beforeEnter: (to, from, next) => {
+        //     checkAuth() ? next() : next({ name: "login" });
+        // }
+    },
+    {
+        path: "/product/checkout",
+        name: "checkoutPage",
+        component: CheckoutProduct,
+    },
+    {
+        path: "/favorites",
+        name: "favoritesPage",
+        component: FavoriteItems,
     },
 ]

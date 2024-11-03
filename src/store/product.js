@@ -5,16 +5,28 @@ export default {
     state() {
         return {
             products: [],
-            productDetail: [],
+            productDetail: {},
+            cart: [],
         }
     },
-    getters: {},
+    getters: {
+        cartItems(state) {
+            return state.cart;
+        },
+    },
     mutations: {
         setProductData(state, payload) {
             state.products = payload;
         },
         setProductDetail(state, payload) {
             state.productDetail = payload;
+        },
+        addToCart(state, payload) {
+            state.cart.push(payload);
+        },
+        // remove product from cart
+        removeFromCart(state, index) {
+            state.cart.splice(index, 1);
         },
     },
     actions: {
@@ -43,6 +55,10 @@ export default {
             } catch(err) {
                 console.log(err);
             }
+        },
+        // add product to cart
+        addToCart({ commit }, product) {
+            commit('addToCart', product);
         },
     },
 }

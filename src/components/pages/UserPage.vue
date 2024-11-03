@@ -20,7 +20,7 @@ const getRoute = computed(() => {
 </script>
 
 <template>
-    <main class="container-fluid p-5">
+    <main class="container-fluid p-5 bg-light">
         <div class="d-flex justify-content-center">
             <user-menu @changeComponent="$router.push($event)"></user-menu>
             <component :is="component[getRoute]"></component>

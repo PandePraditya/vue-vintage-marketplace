@@ -23,6 +23,14 @@ const openModal = () => {
 const closeModal = () => {
     showModal.value = false;
 };
+
+const goToCart = () => {
+    router.push("/product/cart");
+};
+
+const goToFavorites = () => {
+    router.push("/favorites");
+};
 </script>
 
 <template>
@@ -31,8 +39,8 @@ const closeModal = () => {
         <ul class="navbar-nav">
             <div class="d-flex align-items-center">
                 <div class="cart-menu me-5">
-                    <i class="fa-solid fa-cart-shopping text-secondary me-4 fs-5"></i>
-                    <i class="fa-solid fa-heart text-secondary fs-5"></i>
+                    <i class="fa-solid fa-cart-shopping text-secondary cursor-pointer me-4 fs-5" @click="goToCart"></i>
+                    <i class="fa-solid fa-heart text-secondary cursor-pointer fs-5" @click="goToFavorites"></i>
                 </div>
                 <div class="profile-menu d-flex align-items-center">
                     <img :src="userData.imageLink" alt="image" class="rounded-circle me-3" v-if="userData.imageLink" width="40" height="40">
@@ -45,7 +53,7 @@ const closeModal = () => {
                             <router-link to="/user/profile-setting" class="dropdown-item">
                                 <i class="fa-solid fa-user me-2"></i> My Profile
                             </router-link>
-                            <router-link to="/favorite-recipe" class="dropdown-item">
+                            <router-link to="/product/cart" class="dropdown-item">
                                 <i class="fa-solid fa-scroll me-1"></i> Order
                             </router-link>
                             <li>
