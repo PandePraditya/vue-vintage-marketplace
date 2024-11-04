@@ -44,11 +44,12 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-column p-3 mx-3 bg-white rounded-3 w-25" style="max-height: 240px;">
+        <div class="d-flex flex-column p-3 mx-3 bg-white rounded-3 w-25" style="max-height: 290px;">
             <p>Order Summary</p>
-            <p class="d-flex justify-content-between">Order:<span>Rp. 100.000</span></p>
+            <p class="d-flex justify-content-between">Order:<span>Rp. {{ totalCartPrice }}</span></p>
             <p class="d-flex justify-content-between">Protection Fee:<span>Rp. 20.000</span></p>
-            <p class="border-bottom border-1 pb-2 d-flex justify-content-between">Shipping:<span>Rp. 10.000</span></p>
+            <p class="border-bottom border-1 pb-2 d-flex justify-content-between">Shipping:<span>Rp. 20.000</span></p>
+            <p class="pb-2 d-flex justify-content-between fw-semibold">Total Price:<span>Rp. 20.000</span></p>
             <button class="btn btn-teal" @click="confirmOrder">Confirm Order</button>
         </div>
     </div>
@@ -81,6 +82,11 @@ const showModal = ref(false);
 
 // Computed property to get the cart data from Vuex state
 const cartItems = computed(() => store.state.product.cart);
+
+
+const totalCartPrice = computed(() => {
+    return cartItems.value.reduce((total, item) => total + parseInt(item.price), 0);
+});
 
 const confirmOrder = () => {
     showModal.value = true;

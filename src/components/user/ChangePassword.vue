@@ -80,7 +80,15 @@ const changePassword = async () => {
         newPassDoesNotMatch.value = "block";
         newPassMatch.value = "none";
     } else {
-        await store.dispatch("auth/updatePassword", passwordData.value);
+        try {
+            await store.dispatch("auth/updatePassword", {
+                oldPassword: passwordData.value.oldPassword,
+                newPassword: passwordData.value.newPassword,
+            });
+            console.log("Password updated successfully");
+        } catch (error) {
+            console.error("Error updating password:", error);
+        }
     }
 };
 </script>

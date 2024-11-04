@@ -108,39 +108,5 @@ export default {
                 console.log(err);
             }
         },
-        // async updatePassword({ state }, payload) {
-        //     const APIkey = "AIzaSyBsSG8282AbQ8_5z_IUASVIlp-7oU7zqbk";
-        //     const authUrl = `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${APIkey}`;
-        //     console.log("update pass: ", payload);
-        
-        //     try {
-        //         const { oldPassword, newPassword } = payload;
-        
-        //         // Authenticate with the old password
-        //         const authResponse = await axios.post(
-        //             `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${APIkey}`,
-        //             {
-        //                 email: state.userLogin.email,
-        //                 password: oldPassword,
-        //                 returnSecureToken: true
-        //             }
-        //         );
-        
-        //         const { idToken } = authResponse.data; // Get fresh token after successful sign-in
-        
-        //         // Update password using fresh idToken
-        //         await axios.post(authUrl, {
-        //             idToken: idToken,
-        //             password: newPassword,
-        //             returnSecureToken: true
-        //         });
-        
-        //         alert("Password updated successfully");
-        //     } catch (err) {
-        //         console.log("Password update failed:", err.response?.data || err.message);
-        //         alert("Failed to update password. Please try again.");
-        //     }
-        // }
-        
     }
 }

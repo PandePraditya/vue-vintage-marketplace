@@ -19,6 +19,10 @@ const goToCheckout = () => {
     router.push("/product/checkout");
 };
 
+const totalCartPrice = computed(() => {
+    return cartItems.value.reduce((total, item) => total + parseInt(item.price), 0);
+});
+
 </script>
 
 <template>
@@ -30,16 +34,19 @@ const goToCheckout = () => {
         </div>
         <div class="p-5" v-else>
             <h2>Shopping Cart</h2>
-            <div class="p-3 m-3 float-end border border-3 rounded-3">
+            <div class="p-3 m-3 bg-white float-end border border-1 rounded-3">
                 <div class="d-flex">
                     <div class="me-3">
                         <h4>Order Summary</h4>
                         <p>{{ cartItems.length }} Items</p>
                     </div>
+                    <div class="ms-3">
+                        <h4>Rp. {{ totalCartPrice }}</h4>
+                    </div>
                 </div>
                 <button type="button" class="btn btn-teal w-100" @click="goToCheckout">Checkout ({{ cartItems.length }})</button>
             </div>
-            <div v-for="(item, index) in cartItems" :key="index" class="cart-item my-3 w-75 bg-white">
+            <div v-for="(item, index) in cartItems" :key="index" class="cart-item my-3  bg-white" style="max-width: 70%;">
                 <div class="row">
                     <div class="col-md-4">
                         <img :src="item.imageLink" :alt="item.name" class="img-fluid rounded-start">
@@ -50,7 +57,7 @@ const goToCheckout = () => {
                             <p class="card-text">Price: Rp. {{ item.price }}</p>
                             <p class="card-text">Size: {{ item.size }}</p>
                             <p class="card-text">Color: {{ item.color }}</p>
-                            <p class="card-text"><small class="text-muted">Condition: Very Good</small></p>
+                            <p class="card-text"><small class="text-muted">Condition: {{ item.condition }}</small></p>
                         </div>
                         <p @click="removeFromCart(index)" class="text-danger me-3 cursor-pointer fs-5 fw-semibold">
                             Remove</p>

@@ -38,7 +38,7 @@ const goToCart = () => {
         <div class="d-flex justify-content-center">
             <!-- Picture -->
             <div class="col-8 d-flex px-4">
-                <img :src="productDetail.imageLink" :alt="productDetail.name" class="w-100">
+                <img :src="productDetail.imageLink" :alt="productDetail.name" class="w-100 rounded-2">
             </div>
             <!-- Detail -->
             <div class="col-4 border rounded-1 p-3">
@@ -51,14 +51,14 @@ const goToCart = () => {
                     <ul type="none" class="d-flex text-secondary margin-li" style="margin-left: -30px;">
                         <li>{{ productDetail.size }}</li>
                         <li class="opacity-25">•</li>
-                        <li>Very Good</li>
+                        <li>{{ productDetail.condition }}</li>
                         <li class="opacity-25">•</li>
                         <li>Denpasar</li>
                     </ul>
                 </div>
                 <div>
                     <h6 class="text-secondary py-3">Item Description</h6>
-                    <p>Size XL but fits more like M Looser fit has a few minor marks (Pictured)</p>
+                    <p>{{ productDetail.description }}</p>
                 </div>
                 <div class="py-2">
                     <div class="d-flex justify-content-between">
@@ -71,7 +71,7 @@ const goToCart = () => {
                     </div>
                     <div class="d-flex justify-content-between">
                         <p>Condition</p>
-                        <p>Very Good</p>
+                        <p>{{ productDetail.condition }}</p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p>Color</p>

@@ -23,6 +23,10 @@ const menuClicked = option => {
             :class="['d-block text-decoration-none text-black py-3 ms-3', selectedOption === 'change-password' ? 'fw-semibold' : '']" class="cursor-pointer">
             Change Password
         </a>
+        <a @click="menuClicked('add-product')"
+            :class="['d-block text-decoration-none text-black py-3 ms-3', selectedOption === 'add-product' ? 'fw-semibold' : '']" class="cursor-pointer">
+            Add New Products
+        </a>
         <a @click="menuClicked('transaction-history')"
             :class="['d-block text-decoration-none text-black py-3 ms-3', selectedOption === 'transaction-history' ? 'fw-semibold' : '']" class="cursor-pointer">
             Transaction History

@@ -20,5 +20,5 @@
     const router = useRouter();
     const goToProducts = () => {
         router.push('/products');
-    }
+    };
 </script>

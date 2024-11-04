@@ -21,6 +21,11 @@ export default {
         setProductDetail(state, payload) {
             state.productDetail = payload;
         },
+        // add new product
+        setNewProduct(state, payload) {
+            state.products.push(payload);
+        },
+        // add product to cart
         addToCart(state, payload) {
             state.cart.push(payload);
         },
@@ -56,6 +61,18 @@ export default {
                 console.log(err);
             }
         },
+        // add new product to database
+        async addNewProduct({ commit }, payload) {
+            try {
+                await axios.post(
+                    "https://market-place-vintage-default-rtdb.firebaseio.com/products.json", payload
+                );
+                commit("setNewProduct", payload);
+            } catch(err) {
+                console.log(err);
+            }
+        },
+        
         // add product to cart
         addToCart({ commit }, product) {
             commit('addToCart', product);

@@ -3,6 +3,7 @@ import UserMenu from '../user/UserMenu.vue';
 import ProfileSetting from '../user/ProfileSetting.vue';
 import ChangePassword from '../user/ChangePassword.vue';
 import TransactionHistory from '../user/TransactionHistory.vue';
+import AddProduct from '../user/AddProduct.vue';
 import { useRoute } from 'vue-router';
 import { computed } from 'vue';
 
@@ -10,7 +11,8 @@ const route = useRoute();
 const component = {
     "profile-setting": ProfileSetting,
     "change-password": ChangePassword,
-    "transaction-history": TransactionHistory
+    "transaction-history": TransactionHistory,
+    "add-product": AddProduct,
 };
 
 const getRoute = computed(() => {
