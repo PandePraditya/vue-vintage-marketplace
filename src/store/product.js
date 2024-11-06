@@ -6,6 +6,8 @@ export default {
         return {
             products: [],
             productDetail: {},
+            transactions: [],
+            transactionDetail: {},
             cart: [],
         }
     },
@@ -98,7 +100,7 @@ export default {
         async updateProduct({ dispatch, rootState }, { id, newProduct }) {
             console.log(newProduct);
             try {
-                await axios.put(
+                const { data } = await axios.put(
                     `https://market-place-vintage-default-rtdb.firebaseio.com/products/${id}.json?auth=${rootState.auth.token}`, newProduct
                 );
                 await dispatch("getProductData");

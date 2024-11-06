@@ -44,7 +44,7 @@
         </div>
         <div class="col-10 w-100 bg-white border rounded-3 p-3 my-3">
             <p class="text-secondary">Your Products</p>
-            <div class="row p-2">
+            <div class="row p-2" v-if="products.length">
                 <user-product 
                     v-for="product in products" 
                     :key="product.id" 
@@ -54,6 +54,12 @@
                     @btnEdit="editProduct(product.id)">
                         <p>{{ new Date(product.createdAt).toDateString() }}</p>
                 </user-product>
+            </div>
+            <div v-else class="d-flex flex-column justify-content-center align-items-center p-3">
+                <img src="../../assets/images/box-empty.png" alt="box-empty" width="200">
+                <h4>You dont have any products here</h4>
+                <p>Click the button below to add new products</p>
+                <button class="btn btn-teal" @click="addProduct">Add Product</button>
             </div>
         </div>
     </div>
@@ -113,5 +119,9 @@ const deleteProduct = async (productId) => {
 const editProduct = async (productId) => {
     await store.dispatch("product/getProductDetail", productId);
     router.push(`/user/edit-product/${productId}`);
+};
+
+const addProduct = () => {
+    router.push("/user/add-product");
 };
 </script>

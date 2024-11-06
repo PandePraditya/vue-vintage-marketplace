@@ -179,10 +179,11 @@
     import BaseSelect from '../ui/BaseSelect.vue';
     import { onMounted, ref } from 'vue';
     import { useStore } from 'vuex';
-    import { useRouter } from 'vue-router';
+    import { useRouter, useRoute } from 'vue-router';
 
     const store = useStore();
     const router = useRouter();
+    const route = useRoute();
 
     const props = defineProps({
         isEdit: { type: Boolean, default: false },
@@ -215,8 +216,8 @@
     const addNewProduct = async () => {
         if (props.isEdit) {
             await store.dispatch("product/updateProduct", {
-                id: router.params.id,
-                newRecipe: productData.value,
+                id: route.params.id,
+                newProduct: productData.value,
             });
         } else {
             await store.dispatch("product/addNewProduct", productData.value);
