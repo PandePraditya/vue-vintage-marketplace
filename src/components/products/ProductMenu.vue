@@ -5,9 +5,10 @@ defineProps({
 </script>
 
 <template>
+    <h2 class="py-3 mt-4 text-center">Other Products</h2>
     <div class="col-12 d-flex flex-wrap justify-content-center align-items-center py-4">
         <router-link :to="`/product/${product.id}`" class="card me-2 mt-2 text-decoration-none" style="width: 16rem;" v-for="(product, index) in products" :key="index">
-            <img :src="product.imageLink" class="card-img-top" :alt="product.name">
+            <img :src="product.imageLink" class="card-img-top" style="min-height: 16rem;" :alt="product.name">
             <div class="card-body">
                 <h5 class="card-title text-teal fw-bold">Rp. {{ product.price }}</h5>
                 <p class="card-text text-secondary" style="min-height: 3em;">{{ product.name }}</p>

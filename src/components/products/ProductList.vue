@@ -1,19 +1,19 @@
 <script setup>
-import { computed } from "vue";
+// import { computed } from "vue";
 
-const props = defineProps({
+defineProps({
     products: Array,
 });
 
-const sortProducts = computed(() => {
-    // Sort product so only 5 showed up
-    return props.products && props.products.length > 0 ? props.products.slice(0, 4) : [];
-});
+// const sortProducts = computed(() => {
+//     // Sort product so only 4 show up
+//     return props.products && props.products.length > 0 ? props.products.slice(0, 4) : [];
+// });
 </script>
 
 <template>
     <div class="col-12 d-flex flex-wrap justify-content-center align-items-center">
-        <router-link :to="`/product/${product.id}`" class="card me-2 mt-2 text-decoration-none" style="width: 16rem;" v-for="(product, index) in sortProducts" :key="index">
+        <router-link :to="`/product/${product.id}`" class="card me-2 mt-2 text-decoration-none" style="width: 16rem;" v-for="(product, index) in products" :key="index" v-show="index < 4">
             <img :src="product.imageLink" class="card-img-top" :alt="product.name">
             <div class="card-body">
                 <h5 class="card-title text-teal fw-bold">Rp. {{ product.price }}</h5>

@@ -1,22 +1,21 @@
 <template>
-    <div class="col-10 w-50 bg-white border rounded-3 p-3">
-        <p class="text-secondary">My Order</p>
-        <div class="d-flex flex-column justify-content-center align-items-center pb-3">
-            <img src="../../assets/images/bag.png" alt="">
-            <h4>No orders yet</h4>
-            <p>When you buy an item, it will appear here</p>
-            <base-button class="btn btn-teal w-50" @click="goToProducts">Shop Now</base-button>
-        </div>
-    </div>
+    <transactions-detail :transactions="transactionList"></transactions-detail>
 </template>
 
 <script setup>
-    import BaseButton from '../ui/BaseButton.vue';
-    import { useRouter } from 'vue-router';
+    import TransactionsDetail from '../transactions/TransactionsDetail.vue';
+    import { onMounted, ref } from 'vue';
+    import { useStore } from 'vuex';
 
-    const router = useRouter();
+    const store = useStore();
+    const transactionList = ref();
 
-    const goToProducts = () => {
-        router.push('/products');
-    };
+    onMounted( async () => {
+        try {
+            await store.dispatch("product/getTransactionsData");
+            transactionList.value = store.state.product.transactions;
+        } catch (err) {
+            console.log(err);
+        }
+    });
 </script>

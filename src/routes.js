@@ -9,6 +9,7 @@ import CheckoutProduct from "./components/cart/CheckoutProduct.vue";
 import FavoriteItems from "./components/products/FavoriteItems.vue";
 import Cookies from "js-cookie";
 import { store } from "./store/index";
+import EditProductPage from "./components/pages/EditProductPage.vue";
 
 const checkAuth = () => {
     const jwtCookie = Cookies.get("jwt");
@@ -43,18 +44,18 @@ export const routes = [
     },
     {
         path: "/login",
-        name: "webLogin",
+        name: "login",
         component: WebLogin
     },
     {
         path: "/signup",
-        name: "webSignup",
+        name: "signup",
         component: WebSignup
     },
     {
         path: "/product/:id", // Kasi :id nanti
         name: "productDetail",
-        component: DetailPage, 
+        component: DetailPage,
     },
     {
         path: "/products",
@@ -65,26 +66,40 @@ export const routes = [
         path: "/user/:component", // ingat diisi :component
         name: "userPage",
         component: UserPage, 
-        // beforeEnter: (to, from, next) => {
-        //     checkAuth() ? next() : next({ name: "login" });
-        // }
+        beforeEnter: (to, from, next) => {
+            checkAuth() ? next() : next({ name: "login" });
+        }
     },
     {
         path: "/product/cart",
         name: "cartPage",
         component: CartPage,
-        // beforeEnter: (to, from, next) => {
-        //     checkAuth() ? next() : next({ name: "login" });
-        // }
+        beforeEnter: (to, from, next) => {
+            checkAuth() ? next() : next({ name: "login" });
+        }
     },
     {
         path: "/product/checkout",
         name: "checkoutPage",
         component: CheckoutProduct,
+        beforeEnter: (to, from, next) => {
+            checkAuth() ? next() : next({ name: "login" });
+        }
     },
     {
         path: "/favorites",
         name: "favoritesPage",
         component: FavoriteItems,
+        beforeEnter: (to, from, next) => {
+            checkAuth() ? next() : next({ name: "login" });
+        }
+    },
+    {
+        path: "/user/edit-product/:id",
+        name: "editProductPage",
+        component: EditProductPage,
+        beforeEnter: (to, from, next) => {
+            checkAuth() ? next() : next({ name: "login" });
+        }
     },
 ]

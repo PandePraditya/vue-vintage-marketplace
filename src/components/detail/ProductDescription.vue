@@ -5,6 +5,7 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const store = useStore();
+// const productDetail = ref();
 
 const userData = computed(() => {
     return store.state.auth.userLogin
@@ -79,7 +80,7 @@ const goToCart = () => {
                     </div>
                     <div class="d-flex justify-content-between">
                         <p>Uploaded</p>
-                        <p>5 Hours Ago</p>
+                        <p>{{ new Date(productDetail.createdAt).toDateString() }}</p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p>Shipping</p>

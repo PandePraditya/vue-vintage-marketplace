@@ -4,7 +4,6 @@
 
     // const productList = PRODUCT_DATA;
 
-    // eslint-disable-next-line no-unused-vars
     import ProductList from '../products/ProductList.vue'; // jangan dihapus
     import { onMounted, ref } from 'vue';
     import { useStore } from 'vuex';

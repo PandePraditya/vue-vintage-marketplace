@@ -48,8 +48,8 @@
             <p>Order Summary</p>
             <p class="d-flex justify-content-between">Order:<span>Rp. {{ totalCartPrice }}</span></p>
             <p class="d-flex justify-content-between">Protection Fee:<span>Rp. 20.000</span></p>
-            <p class="border-bottom border-1 pb-2 d-flex justify-content-between">Shipping:<span>Rp. 20.000</span></p>
-            <p class="pb-2 d-flex justify-content-between fw-semibold">Total Price:<span>Rp. 20.000</span></p>
+            <p class="border-bottom border-1 pb-2 d-flex justify-content-between">Shipping:<span>Rp. {{ totalShippingFee }}</span></p>
+            <p class="pb-2 d-flex justify-content-between fw-semibold">Total Price:<span>Rp. {{ totalPrice }}</span></p>
             <button class="btn btn-teal" @click="confirmOrder">Confirm Order</button>
         </div>
     </div>
@@ -75,20 +75,41 @@ import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
-
 const router = useRouter(); 
 const store = useStore();
 const showModal = ref(false);
 
-// Computed property to get the cart data from Vuex state
+// Transaction data object
+const transactionData = ref({
+    items: [],
+    address: "PT. Timedoor Indonesia",
+    shippingFee: 0,
+    totalPrice: 0,
+});
+
+// Computed properties for cart items and prices
 const cartItems = computed(() => store.state.product.cart);
-
-
 const totalCartPrice = computed(() => {
     return cartItems.value.reduce((total, item) => total + parseInt(item.price), 0);
 });
 
+const totalShippingFee = computed(() => {
+    return cartItems.value.reduce((total, item) => total + (parseInt(item.shipping) || 0), 0);
+});
+
+const totalPrice = computed(() => {
+    return totalCartPrice.value + totalShippingFee.value + 20000; // 20000 = protect fee
+});
+
+// Function to confirm order
 const confirmOrder = () => {
+    // Fill transaction data
+    transactionData.value.items = cartItems.value;
+    transactionData.value.shippingFee = totalShippingFee.value;
+    transactionData.value.totalPrice = totalPrice.value;
+
+    // Dispatch action to send data to Firebase
+    store.dispatch('product/sendTransactionData', transactionData.value);
     showModal.value = true;
 };
 
@@ -100,7 +121,6 @@ const goToHome = () => {
     router.push("/");
 };
 </script>
-
 <style scoped>
 .checkout-item {
     border-bottom: 1px solid #ddd;

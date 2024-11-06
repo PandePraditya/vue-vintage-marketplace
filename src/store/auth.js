@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
+// import firebase from 'firebase/app' // Cant use
 
 export default {
     namespaced: true,

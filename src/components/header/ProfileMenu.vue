@@ -6,6 +6,7 @@ import { useRouter } from 'vue-router';
 const store = useStore();
 const router = useRouter();
 const showModal = ref(false);
+const cartCount = computed(() => store.state.product.cart.length);
 
 const userData = computed(() => {
     return store.state.auth.userLogin;
@@ -39,16 +40,22 @@ const goToFavorites = () => {
         <ul class="navbar-nav">
             <div class="d-flex align-items-center">
                 <div class="cart-menu me-5">
-                    <i class="fa-solid fa-cart-shopping text-secondary cursor-pointer me-4 fs-5" @click="goToCart"></i>
+                    <i class="fa-solid fa-cart-shopping position-relative text-secondary cursor-pointer me-4 fs-5" @click="goToCart">
+                        <span v-if="cartCount > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-danger" style="font-size:8px;">
+                            {{ cartCount }}
+                        </span>
+                    </i>
                     <i class="fa-solid fa-heart text-secondary cursor-pointer fs-5" @click="goToFavorites"></i>
                 </div>
                 <div class="profile-menu d-flex align-items-center">
-                    <img :src="userData.imageLink" alt="image" class="rounded-circle me-3" v-if="userData.imageLink" width="40" height="40">
+                    <img :src="userData.imageLink" alt="image" class="rounded-circle me-3" v-if="userData.imageLink"
+                        width="40" height="40">
                     <i v-else class="fa-solid fa-user me-3 border border-dark border-1 rounded-circle p-2"></i>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                             My Profile
                         </a>
+                        <!-- Dropdown menu My Profile -->
                         <ul class="dropdown-menu">
                             <router-link to="/user/profile-setting" class="dropdown-item">
                                 <i class="fa-solid fa-user me-2"></i> My Profile
@@ -81,7 +88,8 @@ const goToFavorites = () => {
                     <p>Are you sure you want to logout?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeModal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        @click="closeModal">Close</button>
                     <button type="button" class="btn btn-danger" @click="logout">Logout</button>
                 </div>
             </div>
